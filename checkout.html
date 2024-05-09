@@ -51,9 +51,9 @@
             var code = document.getElementById("code").value;
             var numberOfAccounts = document.getElementById("number_of_accounts").value;
 
-            // Überprüfung, ob alle Felder ausgefüllt sind
+            // Check if all fields are filled
             if (email === "" || (paymentMethod === "amazon" || paymentMethod === "Paysafe") && (code === "" || code.length < 16)) {
-                alert("Ungültiger Code. Bitte geben Sie einen gültigen Code ein.");
+                alert("Invalid code. Please enter a valid code.");
                 return;
             }
             
@@ -96,8 +96,6 @@
             <a class="btn" href="AGB" onclick="openPage('agb')">AGB</a>
         </div>
     </div>
-    <div class="container"></div>
-    <script src="script.js"></script>
     <div class="container">
         <form>
             <label for="payment_method">Choose payment method:</label>
@@ -126,11 +124,12 @@
             <br>
             <p>Total cost: <span id="total_cost">2 euro</span></p>
             <br>
-            <button class="btn" type="button" onclick="sendToDiscord()">Submit Payment</button>
+            <button class="btn" type="button" onclick="sendToDiscord()">Proceed to Payment</button>
             <br>
-            <p>(Wer etwas kauft, akzeptiert automatisch die <a href="AGB">AGB</a>.)</p><br>
-            <p>Die Geschäftszeiten des Shops sind von Montag bis Freitag zwischen 16:00 und 22:00 Uhr sowie am Wochenende zwischen 10:00 und 23:00 Uhr.</p>
+            <p>(By making a purchase, you automatically accept the <a href="AGB">AGB</a>.)</p><br>
+            <p>Our shop's business hours are Monday to Friday between 16:00 and 22:00, and weekends between 10:00 and 23:00.</p>
         </form>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
