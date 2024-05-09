@@ -1,5 +1,5 @@
 body {
-    background: url("image.png");
+    background-image: url('https://i.imgur.com/TsKldNE.jpeg');
     display: flex;
     justify-content: center;
     align-items: center;
@@ -142,3 +142,44 @@ img {
         margin: 10px 0;
     }
 }
+
+.input {
+    width: 50%;
+    border: 1px solid #FFF;
+    border-radius: 8px;
+    outline: inherit;
+    padding: 1rem;
+    margin: 0.5rem;
+    box-shadow: 
+        #0002 0 1px 3px 0,
+        #0002 0 0 0 1px;
+}
+
+.input:focus {
+    box-shadow: #0005 0 2px 2px -1px;
+}
+a
+
+.nummer {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.account-selection input[type="radio"] {
+    display: none;
+}
+
+.account-selection label {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 12px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.account-selection input[type="radio"]:checked + label {
+    background-color: #e456b5;
+}
+
