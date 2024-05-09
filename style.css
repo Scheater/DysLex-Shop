@@ -1,5 +1,5 @@
 body {
-    background-image: url('https://i.imgur.com/TsKldNE.jpeg');
+    background: url("image.png");
     display: flex;
     justify-content: center;
     align-items: center;
