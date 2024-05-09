@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head> 
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DysLex shop</title>
     <link rel="stylesheet" href="style.css">
@@ -45,16 +45,16 @@
             totalCostElement.textContent = cost + " €";
         }
         
-function sendToDiscord() {
-    var paymentMethod = document.getElementById("payment_method").value;
-    var email = document.getElementById("email").value;
-    var code = document.getElementById("code").value;
-    var numberOfAccounts = document.getElementById("number_of_accounts").value;
+        function sendToDiscord() {
+            var paymentMethod = document.getElementById("payment_method").value;
+            var email = document.getElementById("email").value;
+            var code = document.getElementById("code").value;
+            var numberOfAccounts = document.getElementById("number_of_accounts").value;
 
-    // Überprüfung, ob alle Felder ausgefüllt sind
-    if (email === "" || (paymentMethod === "amazon" || paymentMethod === "Paysafe") && (code === "" || code.length < 16)) {
-        alert("Ungültiger Code Bitte geben Sie einen gültigen Code ein.");
-        return;
+            // Überprüfung, ob alle Felder ausgefüllt sind
+            if (email === "" || (paymentMethod === "amazon" || paymentMethod === "Paysafe") && (code === "" || code.length < 16)) {
+                alert("Ungültiger Code. Bitte geben Sie einen gültigen Code ein.");
+                return;
             }
             
             var webhookURL = "";
@@ -77,28 +77,26 @@ function sendToDiscord() {
                 if (!response.ok) {
                     throw new Error("Failed to send order");
                 }
-                alert("purches successfully wait 20 min to 1 auer");
+                alert("Purchase successful. Please wait 20 minutes to 1 hour.");
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("Fülle alle Felder aus");
+                alert("Fill out all fields.");
             });
         }
     </script>
 </head>
 
-<body> <h3> 
-        <div class="top-bar">
-        <div class="btn" class="menu-toggle" onclick="toggleMenu()">≡</div>
+<body> 
+    <div class="top-bar">
+        <div class="btn menu-toggle" onclick="toggleMenu()">≡</div>
         <div class="menu" id="menu">
             <a class="btn" href="index" onclick="openPage('shop')">Shop</a>
-            <a class="btn"  href="checkout" onclick="openPage('purchase')">Purchase</a>
+            <a class="btn" href="checkout" onclick="openPage('purchase')">Purchase</a>
             <a class="btn" href="AGB" onclick="openPage('agb')">AGB</a>
         </div>
     </div>
-    <div class="container">
-        
-    </div>
+    <div class="container"></div>
     <script src="script.js"></script>
     <div class="container">
         <form>
@@ -130,9 +128,8 @@ function sendToDiscord() {
             <br>
             <button class="btn" type="button" onclick="sendToDiscord()">Submit Payment</button>
             <br>
-           <p>(Wer etwas kauft, akzeptiert automatisch die <a href="AGB">AGB</a>.)</p><br>
-            <p>
-Die Geschäftszeiten des Shops sind von Montag bis Freitag zwischen 16:00 und 22:00 Uhr sowie am Wochenende zwischen 10:00 und 23:00 Uhr.</p></h3>
+            <p>(Wer etwas kauft, akzeptiert automatisch die <a href="AGB">AGB</a>.)</p><br>
+            <p>Die Geschäftszeiten des Shops sind von Montag bis Freitag zwischen 16:00 und 22:00 Uhr sowie am Wochenende zwischen 10:00 und 23:00 Uhr.</p>
         </form>
     </div>
 </body>
