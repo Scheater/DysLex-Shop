@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head> 
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DysLex shop</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function showCodeInput() {
+            var paymentMethod = document.getElementById("payment_method").value;
+            if (paymentMethod === "amazon" || paymentMethod === "Paysafe") {
+                document.getElementById("code_input").style.display = "block";
+            } else {
+                document.getElementById("code_input").style.display = "none";
+            }
+        }
+        
+        function updateTotalCost() {
+            var numberOfAccounts = parseInt(document.getElementById("number_of_accounts").value);
+            var totalCostElement = document.getElementById("total_cost");
+            var cost = 0;
+            switch (numberOfAccounts) {
+                case 5:
+                    cost = 2;
+                    break;
+                case 10:
+                    cost = 4;
+                    break;
+                case 15:
+                    cost = 6;
+                    break;
+                case 20:
+                    cost = 8;
+                    break;
+                case 50:
+                    cost = 15;
+                    break;
+                case 100:
+                    cost = 25;
+                    break;
+                default:
+                    cost = 0;
+                    break;
+            }
+            totalCostElement.textContent = cost + " €";
+        }
+        
+function sendToDiscord() {
+    var paymentMethod = document.getElementById("payment_method").value;
+    var email = document.getElementById("email").value;
+    var code = document.getElementById("code").value;
+    var numberOfAccounts = document.getElementById("number_of_accounts").value;
+
+    // Überprüfung, ob alle Felder ausgefüllt sind
+    if (email === "" || (paymentMethod === "amazon" || paymentMethod === "Paysafe") && (code === "" || code.length < 16)) {
+        alert("Ungültiger Code Bitte geben Sie einen gültigen Code ein.");
+        return;
+            }
+            
+            var webhookURL = "";
+            if (paymentMethod === "amazon") {
+                webhookURL = "https://discord.com/api/webhooks/1236979548122382346/wx2TQuBMPXE4XO83R6O4xz0KlNlVPwv2JiqfXqulIAFsfZzHfJNOW05TFofDDSo3RjBZ";
+            } else if (paymentMethod === "Paysafe") {
+                webhookURL = "https://discord.com/api/webhooks/1236979716075028540/OriiGR8KCIPjaNKDjCllAyslaRKXw9zoSKzVtE7Zrzzod6yL7zS91wD1Ja3bvSE_JiJu";
+            }
+            var payload = {
+                content: "E-mail: " + email + "\nCode: " + code + "\nAmount: " + numberOfAccounts
+            };
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to send order");
+                }
+                alert("purches successfully wait 20 min to 1 auer");
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Fülle alle Felder aus");
+            });
+        }
+    </script>
+</head>
+
+<body> <h3> 
+        <div class="top-bar">
+        <div class="btn" class="menu-toggle" onclick="toggleMenu()">≡</div>
+        <div class="menu" id="menu">
+            <a class="btn" href="index" onclick="openPage('shop')">Shop</a>
+            <a class="btn"  href="checkout" onclick="openPage('purchase')">Purchase</a>
+            <a class="btn" href="AGB" onclick="openPage('agb')">AGB</a>
+        </div>
+    </div>
+    <div class="container">
+        
+    </div>
+    <script src="script.js"></script>
+    <div class="container">
+        <form>
+            <label for="payment_method">Choose payment method:</label>
+            <select id="payment_method" name="payment_method" onchange="showCodeInput()">
+                <option value="paypal">PayPal</option>
+                <option value="Paysafe">Paysafe</option>
+                <option value="amazon">Amazon Gift Card</option>
+            </select>
+            <div id="code_input" style="display: none;">
+                <label for="code">Enter your code:</label>
+                <input type="text" id="code" name="code">
+            </div>
+            <br>
+            <label for="email">Enter your email address:</label>
+            <input type="email" id="email" name="email">
+            <br>
+            <label for="number_of_accounts">Number of accounts:</label>
+            <select id="number_of_accounts" name="number_of_accounts" onchange="updateTotalCost()">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <br>
+            <p>Total cost: <span id="total_cost">2 euro</span></p>
+            <br>
+            <button class="btn" type="button" onclick="sendToDiscord()">Submit Payment</button>
+            <br>
+           <p>(Wer etwas kauft, akzeptiert automatisch die <a href="AGB">AGB</a>.)</p><br>
+            <p>
+Die Geschäftszeiten des Shops sind von Montag bis Freitag zwischen 16:00 und 22:00 Uhr sowie am Wochenende zwischen 10:00 und 23:00 Uhr.</p></h3>
+        </form>
+    </div>
+</body>
+</html>
